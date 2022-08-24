@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.scientific_claculator.databinding.ActivityMainBinding;
 
+import org.mariuszgromada.math.mxparser.Expression;
+
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
@@ -17,9 +19,12 @@ public class MainActivity extends AppCompatActivity {
         binding=ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        clickListener();
 
+
+       // this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         binding.display.setShowSoftInputOnFocus(false);
+
+        clickListener();
 
     }
 
@@ -45,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         binding.clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  updateText("");
                 binding.display.setText("");
             }
         });
@@ -189,15 +193,159 @@ public class MainActivity extends AppCompatActivity {
                updateText(getResources().getString(R.string.parenthesesCloseText));
            }
        });
-       binding.equalBtn.setOnClickListener(new View.OnClickListener() {
+
+
+
+       binding.sinBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               updateText(getResources().getString(R.string.equalsText));
+
+               updateText("sin(");
            }
        });
 
+/*
+
+        binding.sin2Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updateText("arcsin(");
+            }
+        });
 
 
+        binding.cosBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updateText("cos(");
+            }
+        });
+
+        binding.cos2Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updateText("arccos(");
+            }
+        });
+
+
+        binding.tanBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updateText("tan(");
+            }
+        });
+
+
+        binding.tan2Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updateText("arctan(");
+            }
+        });
+
+
+        binding.logBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updateText("log(");
+            }
+        });
+
+
+        binding.nLogBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updateText("ln(");
+            }
+        });
+
+
+        binding.squareRootBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updateText("sqrt(");
+            }
+        });
+
+
+
+        binding.eBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updateText("e");
+            }
+        });
+
+        binding.piBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateText("Pi(");
+            }
+        });
+
+
+        binding.absBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updateText("abs(");
+            }
+        });
+
+
+        binding.primeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updateText("ispr(");
+            }
+        });
+
+
+        binding.xBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updateText("^(2)");
+            }
+        });
+
+        binding.yBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                updateText("^(");
+            }
+        });
+*/
+
+
+        binding.equalBtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               String userExp=binding.display.getText().toString();
+
+               binding.previousCalculationView.setText(userExp);
+               userExp=userExp.replaceAll("÷","/");
+               userExp=userExp.replaceAll("×","*");
+
+               Expression exp=new Expression(userExp);
+
+               String result=String.valueOf(exp.calculate());
+
+               binding.display.setText(result);
+               binding.display.setSelection(result.length());           }
+       });
 
     }
 }

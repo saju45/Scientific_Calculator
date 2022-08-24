@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/btn_bg.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/clear_btn_bg.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/equal_btn_bg.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.19196428571428573" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15925925925925927" />
       </map>
     </option>
